@@ -12,6 +12,8 @@ class Img2silhouette():
     def __init__(self, gs):
         self.ax0 = plt.subplot(gs[0, :])
         self.ax1 = plt.subplot(gs[1, 0])
+        self.ax2 = plt.subplot(gs[1, 1])
+        self.ax3 = plt.subplot(gs[1, 2])
         self.ln, = self.ax0.plot([],[],'bo')
         self.cur, = self.ax0.plot([],[],'ro')
         self.x = []
@@ -19,6 +21,7 @@ class Img2silhouette():
         self.ax0.set_xlim(-500, 4000)
         self.ax0.set_ylim(-400, 2000)
         self.line_pre = None
+        self.btn2mode = Btn2mode(self)
     
     @staticmethod
     def motion(event):
@@ -56,8 +59,32 @@ class Img2silhouette():
         fig.canvas.mpl_connect('button_press_event', self.onclick)
         fig.canvas.mpl_connect('motion_notify_event', self.motion)
 
-        btn = wg.Button(self.ax1, 'Silhouette', color='#ffffff', hovercolor='#38b48b')
-        btn.on_clicked(self.btn_click)
+        self.btn2mode.setup_callbacks()
+
+
+class Btn2mode:
+    def __init__(self, img2silhouette):
+        self.img2silhouette = img2silhouette
+        self.btn = wg.Button(img2silhouette.ax1, 'silhouette', color='#ffffff', hovercolor='#38b48b')
+        self.btn_clear = wg.Button(img2silhouette.ax2, 'clear', color='#ffffff', hovercolor='#38b48b')
+
+    def btn_click(self, event):
+        self.img2silhouette.btn_click(event)
+
+    def btn_clear_click(self, event):
+        # Clear all points
+        self.img2silhouette.x.clear()
+        self.img2silhouette.y.clear()
+        self.img2silhouette.ln.set_data([], [])
+        self.img2silhouette.cur.set_data([], [])
+        if self.img2silhouette.line_pre is not None:
+            self.img2silhouette.line_pre.remove()
+            self.img2silhouette.line_pre = None
+        plt.draw()
+
+    def setup_callbacks(self):
+        self.btn.on_clicked(self.btn_click)
+        self.btn_clear.on_clicked(self.btn_clear_click)
 
 
 
