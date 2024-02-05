@@ -15,4 +15,5 @@ $ python img2silhouette.py
 Then web page wil be launched.
 
 ## Output
-![img2silhouette](https://github.com/Jake110ii/Img2silhouette/assets/42618491/6c776f24-61d6-4cff-877b-374027c56f0d)
+![img2silhouette](https://github.com/Jake110ii/Img2silhouette/assets/42618491/0721b93c-20fe-4df1-8be1-f9a5a26baeaf)
+
