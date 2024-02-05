@@ -5,7 +5,9 @@ from matplotlib.patches import Rectangle
 def motion(event):
     global gco, xdata, ydata, ind
     if gco is None:
+        print('ggg')
         return
+    print('aaa')
     x = event.xdata
     y = event.ydata
     if x == None or y == None:
@@ -17,6 +19,8 @@ def motion(event):
 
 def onpick(event):
     global gco, xdata, ydata, ind
+    print('bbb')
+    print('type:', type(event))
     gco = event.artist
     xdata = gco.get_xdata()
     ydata = gco.get_ydata()
