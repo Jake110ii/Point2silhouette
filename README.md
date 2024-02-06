@@ -1,4 +1,4 @@
-# Img2silhouette
+# Point2silhouette
 A command line tool for interactive point-line and move web tool.
 
 ## Requirements
@@ -10,7 +10,7 @@ $ pip install -r requirements.txt
 ## Run the command line
 Run this command
 ```bash
-$ python img2silhouette.py
+$ python point2silhouette.py
 ```
 Then web page wil be launched.
 
